@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CCD</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style>p, h1 {font-family: helvetica;
+                padding-left:3px;
+            }
+            h1 {
+                padding-left:15px;
+            }
+            p {font-size:1.2em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 1em;}
+            
+            div { border: 1px solid black; 
+            margin: 4px; 
+            border-radius:5px; 
+            }</style>
+</head>
+
+<body>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   
+        
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                
+                <a class="navbar-brand" href="index.html">CCD</a>
+            </div>
+            <!-- /.navbar-header -->
+
+          
+           <h1>Chicago Community Data</h1>
+    <br>
+    <p>find out info about the communities in Chicago by typing there name in the search bar.(all caps please, ex:PORTAGE PARK, NORTH LAWNDALE, AUSTIN.) <input type='text' placeholder='EX. PORTAGE PARK' id='input'>
+        <button id='btn'>Check Stats</button>
+        <div id='empty'>
+        <div id="html"></div>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        
+                                    
+                            
+                            
+                            <!-- /input-group -->
+                        
+                    
+                              
+                         
+               
+    <!-- /#wrapper --> 
+
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+         $('#btn').click(function(){
+        $('#html').empty()
+        var inspections;
+        var display = $('#input').val()
+        console.log(display)
+        
+        // base URL to the food inspections data
+         var baseURL = 'https://data.cityofchicago.org/resource/jcxq-k9xf.json';
+        var filters = display;
+        var url = baseURL + filters;
+        console.log (url);
+        $.getJSON(url)
+            .done (function(data) {
+                console.log(data)
+                inspections = data;
+                if (inspections.length==0){
+                     var html = 
+                         '<p>not valid</p>'
+                         $('#html').append(html)
+                         }
+                else {
+             $.each(data, function(index, value){
+                       var html = "<div><h1>" + value.community_area_name + "</h1>" +
+                                    "<p>Per capita income: " + value.per_capita_income_ + " USD" + "<br>" +
+                                    "Hardship Index: " + value.hardship_index + "<br>" + "Age 16 and unemployed:" + value.percent_aged_16_unemployed + "<br>" + "Aged 25 without highschool diploma" + value.percent_aged_25_without_high_school_diploma + "<br>" + "Under 18 Or over 64" +  value.percent_aged_25_without_high_school_diploma + "<br>" + "households below poverty"
+                                    + value.percent_households_below_poverty + "<br>" + "housing crowded" + value.percent_of_housing_crowded
+                                    "</p>" + 
+                                    "</div>";
+                                    
+                        $("body").append(html);
+        });
+        
+                }
+            });
+    });
+         
+   </script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Flot Charts JavaScript -->
+    <script src="../vendor/flot/excanvas.min.js"></script>
+    <script src="../vendor/flot/jquery.flot.js"></script>
+    <script src="../vendor/flot/jquery.flot.pie.js"></script>
+    <script src="../vendor/flot/jquery.flot.resize.js"></script>
+    <script src="../vendor/flot/jquery.flot.time.js"></script>
+    <script src="../vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
+    <script src="../data/flot-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

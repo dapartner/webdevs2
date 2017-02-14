@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Towed Cars in IL</title>
+         <style>
+            p, h1 {font-family: helvetica;
+                padding-left:3px;
+            }
+            h1 {
+                padding-left:15px;
+            }
+            p {font-size:1.2em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 1em;}
+            
+            div { border: 1px solid black; 
+            margin: 4px; 
+            border-radius:5px; 
+            }
+         
+        </style>
+    </head>
+    <body>
+       
+        
+        
+    <h1>Chicago Community Data</h1>
+    <br>
+    <p>find out info about the communities in Chicago by typing there name in the search bar.(all caps please, ex:PORTAGE PARK, NORTH LAWNDALE, AUSTIN.) <input type='text' placeholder='EX. PORTAGE PARK' id='input'>
+        <button id='btn'>Check Stats</button>
+        <div id='empty'>
+        <div id="html"></div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        
+      $('#btn').click(function(){
+        $('#html').empty()
+        var inspections;
+        var display = $('#input').val()
+        console.log(display)
+        // base URL to the food inspections data
+        
+        // base URL to the food inspections data
+       var baseURL = 'https://data.cityofchicago.org/resource/jcxq-k9xf.json';
+        var filters = '?community_area_name' + display;
+        var url = baseURL + filters;
+        console.log (url);
+        $.getJSON(url)
+            .done (function(data) {
+                console.log(data)
+                inspections = data;
+                if (inspections.length==0){
+                     var html = 
+                         '<p>not valid</p>'
+                         $('#html').append(html)
+                         }
+                else {
+             $.each(data, function(index, value){
+                       var html = "<div><h1>" + value.community_area_name + "</h1>" +
+                                    "<p>Per capita income: " + value.per_capita_income_ + " USD" + "<br>" +
+                                    "Hardship Index: " + value.hardship_index + "<br>" + "Age 16 and unemployed:" + value.percent_aged_16_unemployed + "<br>" + "Aged 25 without highschool diploma" + value.percent_aged_25_without_high_school_diploma + "<br>" + "Under 18 Or over 64" +  value.percent_aged_25_without_high_school_diploma + "<br>" + "households below poverty"
+                                    + value.percent_households_below_poverty + "<br>" + "housing crowded" + value.percent_of_housing_crowded
+                                    "</p>" + 
+                                    "</div>";
+                    $('#html').append(html);
+        });
+        
+                }
+            });
+    });
+    </script>
+    </body>
+</html>
