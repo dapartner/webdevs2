@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Towed Vehicles</title>
+        <style>
+            p, h1 {font-family: helvetica; margin-left: 24px;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            div { border: 1px solid black; margin: 10px; border-radius: 5px; background-color: #ededed}
+            .BGE {background-color: #f5f5dc; }
+            .BLK {background-color: gray; }
+            .BLU {background-color: blue; }
+            .BRO {background-color: #876060;}
+            .GLD {background-color: yellow; }
+            .RED {background-color: red; }
+            .GRY {background-color: gray; }
+            .GRN {background-color: lime; }
+            .SIL {background-color: silver; }
+            .TAN {background-color: tan; }
+            .WHI {background-color: white; }
+            .MAR {background-color: maroon; }
+        </style>
+    </head>
+    <body>
+    <h1>Towed Vehicles (Illinois Only)</h1>
+    <p>Note: color of box is color of the car</p>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        /*
+            This script retrieves 311 pot hole service request data for 
+            from the 
+            City of Chicago Data Portal
+            
+            This script doesn't update the DOM.
+
+        */
+
+        // base URL to the food inspections data
+        var baseURL = 'https://data.cityofchicago.org/resource/rp42-fxjt.json';
+        
+        // optional filters we're appending - status
+        var filters = '?state=IL';
+        
+        // full URL
+        var url = baseURL + filters;
+        
+        console.log (url);
+        
+        $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(url)
+                .done (function (data) {
+                    // TODO:  add script to add data to the DOM
+                    console.log(data);
+
+                    // loop through the records
+                    
+                    $.each(data, function(index, value){
+                       var html = "<div class=" + value.color + ">" + "<h1>" + value.plate + "</h1>" +
+                      "<p>" + "Identifiers: " +  value.make + " , " + value.style + " , " + value.color + "<br>" + "Towed to: " + value.towed_to_address + "<br>" + "Plate number: " + value.plate + "<br>" + "Contact Information: " + value.tow_facility_phone +
+                                    "</p>" +
+                                    "</div>";
+                                    
+                        $("body").append(html);
+                    });
+                })
+            
+            
+        )
+        
+        
+    </script>
+    </body>
+</html>
