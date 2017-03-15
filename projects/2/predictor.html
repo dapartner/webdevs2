@@ -146,7 +146,7 @@ function findbus() {
         console.log(data);
 
         $.each(data["bustime-response"]["prd"], function(i, v) {
-
+          $("#buses").empty();
           $("#buses").append("<div>Destination: " + "<br>" + v.des + "<br>" + " Route Direction: "+ "<br>" + v.rtdir + "<br>" + " Predicted Time to Arrival: " + "<br>" + v.prdctdn + " minutes to go" + "<br><br></div>");
 
         });
