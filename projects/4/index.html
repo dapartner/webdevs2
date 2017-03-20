@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+      .screen {
+        display: none;
+      }
+      .demo-card-wide.mdl-card {
+      width: 512px;
+      padding: 10px;
+      margin: auto;
+      }
+      .demo-card-wide > .mdl-card__title {
+        color: #fff;
+        height: 176px;
+        background: url('http://cdn.history.com/sites/2/2013/12/joseph-stalin-AB.jpeg') center / cover;
+      }
+      .demo-card-wide > .mdl-card__menu {
+        color: #fff;
+      }
+      body {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Hammer_and_sickle_red_on_transparent.svg/200px-Hammer_and_sickle_red_on_transparent.svg.png");
+        background-repeat: repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Communism Doing Things</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" id="link1" href="#">Link 1</a>
+            <a class="mdl-navigation__link" id="link2" href="#">Link 2</a>
+            <a class="mdl-navigation__link" id="link3" href="#">Link 3</a>
+            <a class="mdl-navigation__link" href="#">Link</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" id="link1" href="#">Link 1</a>
+        <a class="mdl-navigation__link" id="link2" href="#">Link 2</a>
+        <a class="mdl-navigation__link" id="link3" href="#">Link 3</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="screen page-content" id="one">
+          <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Communism Doing Things</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Welcome to the website of the best Youtube channel in all of history, my comrade.
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+    Seize the means of production
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><a href="https://www.youtube.com/channel/UCjx2vp5hLAFotvkqerQ1RLQ">
+      <i class="material-icons">share</i>
+      </a>
+    </button>
+  </div>
+</div>
+          Screen One
+        </div>
+        <div class="screen page-content" id="two">Screen Two</div>
+        <div class="screen page-content" id="three">Screen Three</div>
+      </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $('#one').show();
+        
+        $("#link1").on("click", function () {
+          $(".screen").hide();
+          $("#one").show();
+        });
+        
+        $("#link2").on("click", function () {
+          $(".screen").hide();
+          $("#two").show();
+        });
+        
+        $("#link3").on("click", function () {
+          $(".screen").hide();
+          $("#three").show();
+        });
+        
+      });
+    </script>
+  </body>
+</html>
