@@ -1,0 +1,15 @@
+{
+  "short_name": "Communism",
+  "name": "Communist Meme Page",
+  "icons": [
+    {
+      "src":"./stalin'.png",
+      "sizes": "250x250",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#FF1A00",
+  "Theme_color": "#000",
+  "display": "standalone"
+}
